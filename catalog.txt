@@ -1,0 +1,2 @@
+NASUA-APPSTORE-1
+hello|1.0.0|6|229|28c812271a4efae9a4740633f019a6414b5c0ae9ded7c149ab622148f4e54ea4|apps/hello.napp
