@@ -1,2 +1,2 @@
-NASUA-APPSTORE-1
-hello|1.0.0|6|229|28c812271a4efae9a4740633f019a6414b5c0ae9ded7c149ab622148f4e54ea4|apps/hello.napp
+NASUA-FILE-CATALOG-1
+example.txt|1.0.0|91d5cc20a5e6696f6a3549a76b6ff40c9855fa7d5de017942d9af69ee871e53e|files/example.txt

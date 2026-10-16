@@ -1,37 +1,28 @@
-# NasuaOS App Repository
+# NasuaOS file download repository
 
-This folder is a starter repository for `appstore`. Create a public GitHub
-repository and upload the contents of this folder to its root:
-
-- `catalog.txt`
-- `apps/hello.napp`
-- `hello.cpp` (the source for the example binary)
-
-The catalog format is line-oriented:
+Copy `catalog.txt` and the `files/` directory to the root of a public GitHub
+repository. The catalog uses this format:
 
 ```text
-NASUA-APPSTORE-1
-name|version|abi|size-in-bytes|sha256-lowercase|apps/name.napp
+NASUA-FILE-CATALOG-1
+filename|version|sha256-lowercase|files/path/to/file
 ```
 
-Each package must be a NAPP binary built for the current ABI. The catalog pins
-its exact size and SHA-256, and `appstore` checks both plus the NAPP header
-before writing it to `/apps`.
+Each entry describes one file. `filename` is the name saved in
+`/home/user/downloads`, `version` is a descriptive version string, the SHA-256
+is calculated from the exact file bytes, and the final field is the path inside
+the GitHub repository. Keep destination filenames unique and shorter than 28
+characters. Individual downloads are limited to 60,000 bytes.
 
-To use this repository after uploading it:
+Example:
 
 ```text
-appstore --repo YOUR_GITHUB_NAME/YOUR_REPOSITORY list
-appstore --repo YOUR_GITHUB_NAME/YOUR_REPOSITORY install hello
-bootapp --app hello
+example.txt|1.0.0|91d5cc20a5e6696f6a3549a76b6ff40c9855fa7d5de017942d9af69ee871e53e|files/example.txt
 ```
 
-The `main` branch is used by default. Only public repositories are supported.
-HTTPS verifies the GitHub server certificate, but packages are executable
-code: install only from repositories you trust. The SHA-256 in this catalog
-checks that the downloaded binary matches the catalog; it is not a publisher
-signature.
+List and download files from NasuaOS with:
 
-If you rebuild an app or change the catalog, update its byte size and SHA-256
-as well. The installer rejects mismatches and does not overwrite an already
-installed app.
+```text
+download --repo OWNER/REPO list
+download --repo OWNER/REPO get example.txt
+```
